@@ -1,6 +1,6 @@
 # 🚀 Parallel APK Installer (Multi-Device) – Web UI
 
-A robust, web-based tool for **installing and launching APKs on multiple Android devices at once**. Enter your device IPs, select your APK/ADB files, configure parallelism and launch settings, and deploy apps with zero hassle—all from your browser.
+A robust, web-based tool for **installing and launching APKs on multiple Android devices at once**. Enter your device IPs, select your APK/ADB files, configure parallelism and launch settings, and deploy apps with zero hassle—all from your browser. testing
 
 ## ✨ Features
 
