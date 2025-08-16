@@ -1,217 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APK Installer - Web Interface</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>APK Installer - High Performance Web Interface</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            min-height: 100vh; 
             padding: 20px;
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1200px; 
+            margin: 0 auto; 
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 15px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
             overflow: hidden;
         }
         
         .header {
             background: linear-gradient(135deg, #2196F3, #21CBF3);
-            color: white;
-            padding: 30px;
+            color: white; 
+            padding: 30px; 
             text-align: center;
         }
         
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        .header h1 { 
+            font-size: 2.5em; 
+            margin-bottom: 10px; 
         }
         
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
+        .header p { 
+            font-size: 1.1em; 
+            opacity: 0.9; 
+        }
+        
+        .performance-indicator {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 0.9em;
         }
         
         .main-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 30px; 
             padding: 30px;
         }
         
         .form-section {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
+            background: #f8f9fa; 
+            padding: 25px; 
+            border-radius: 10px; 
             border: 1px solid #e9ecef;
         }
         
         .form-section h3 {
-            color: #2c3e50;
-            margin-bottom: 20px;
+            color: #2c3e50; 
+            margin-bottom: 20px; 
             font-size: 1.3em;
         }
         
-        .form-group {
-            margin-bottom: 20px;
+        .form-group { 
+            margin-bottom: 20px; 
         }
         
         .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: 600; 
             color: #495057;
         }
         
         .form-group input,
         .form-group textarea,
         .form-group select {
-            width: 100%;
-            padding: 12px;
+            width: 100%; 
+            padding: 12px; 
             border: 2px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 8px; 
+            font-size: 14px; 
             transition: border-color 0.3s;
         }
         
         .form-group input:focus,
         .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #2196F3;
+        .form-group select:focus { 
+            outline: none; 
+            border-color: #2196F3; 
         }
         
-        .form-group textarea {
-            resize: vertical;
-            height: 120px;
+        .form-group textarea { 
+            resize: vertical; 
+            height: 120px; 
         }
         
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .checkbox-group { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
         }
         
-        .checkbox-group input[type="checkbox"] {
-            width: auto;
+        .checkbox-group input[type="checkbox"] { 
+            width: auto; 
         }
         
         .btn {
             background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
-            padding: 15px 30px;
-            border: none;
+            color: white; 
+            padding: 15px 30px; 
+            border: none; 
             border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
+            font-size: 16px; 
+            cursor: pointer; 
             transition: transform 0.2s;
-            width: 100%;
-            font-weight: 600;
+            width: 100%; 
+            font-weight: 600; 
+            margin-top: 10px;
         }
         
-        .btn:hover {
-            transform: translateY(-2px);
+        .btn:hover { 
+            transform: translateY(-2px); 
         }
         
-        .btn:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
-            transform: none;
+        .btn:disabled { 
+            background: #6c757d; 
+            cursor: not-allowed; 
+            transform: none; 
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+        }
+        
+        .btn-info {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        .date-section {
+            background: #e8f4fd; 
+            padding: 20px; 
+            border-radius: 10px;
+            border: 2px solid #b3d9ff; 
+            margin-bottom: 20px;
+        }
+        
+        .date-input-group {
+            display: flex; 
+            gap: 10px; 
+            align-items: center; 
+            margin-top: 10px;
+        }
+        
+        .date-input-group input[type="text"] { 
+            flex: 1; 
+            font-family: monospace;
+            font-size: 16px;
+        }
+        
+        .date-input-group button { 
+            width: auto; 
+            padding: 12px 20px; 
         }
         
         .progress-section {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
+            background: #f8f9fa; 
+            padding: 25px; 
+            border-radius: 10px; 
             border: 1px solid #e9ecef;
+            grid-column: 1 / -1; 
+            margin-top: 20px;
         }
         
         .progress-bar {
-            width: 100%;
-            height: 30px;
+            width: 100%; 
+            height: 30px; 
             background: #e9ecef;
-            border-radius: 15px;
-            overflow: hidden;
+            border-radius: 15px; 
+            overflow: hidden; 
             margin: 15px 0;
         }
         
         .progress-fill {
-            height: 100%;
+            height: 100%; 
             background: linear-gradient(90deg, #4CAF50, #45a049);
-            width: 0%;
-            transition: width 0.3s;
-            display: flex;
-            align-items: center;
+            width: 0%; 
+            transition: width 0.3s; 
+            display: flex; 
+            align-items: center; 
             justify-content: center;
-            color: white;
+            color: white; 
             font-weight: bold;
         }
         
         .status-grid {
-            display: grid;
+            display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            gap: 15px; 
             margin: 20px 0;
         }
         
         .status-card {
-            background: white;
-            padding: 15px;
+            background: white; 
+            padding: 15px; 
             border-radius: 8px;
-            text-align: center;
+            text-align: center; 
             border: 2px solid #e9ecef;
         }
         
-        .status-card h4 {
-            font-size: 2em;
-            margin-bottom: 5px;
+        .status-card h4 { 
+            font-size: 2em; 
+            margin-bottom: 5px; 
         }
         
-        .status-card.success h4 { color: #4CAF50; }
-        .status-card.failed h4 { color: #f44336; }
-        .status-card.total h4 { color: #2196F3; }
+        .status-card.success h4 { 
+            color: #4CAF50; 
+        }
+        
+        .status-card.failed h4 { 
+            color: #f44336; 
+        }
+        
+        .status-card.total h4 { 
+            color: #2196F3; 
+        }
+        
+        /* New performance metrics cards */
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.8em;
+        }
+        
+        .metric-card .value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
         
         .results-section {
-            grid-column: 1 / -1;
-            background: #f8f9fa;
-            padding: 25px;
+            grid-column: 1 / -1; 
+            background: #f8f9fa; 
+            padding: 25px; 
             border-radius: 10px;
-            border: 1px solid #e9ecef;
+            border: 1px solid #e9ecef; 
             margin-top: 20px;
         }
         
         .device-result {
-            display: flex;
-            justify-content: space-between;
+            display: flex; 
+            justify-content: space-between; 
             align-items: center;
-            padding: 10px;
-            margin: 5px 0;
-            background: white;
-            border-radius: 5px;
+            padding: 10px; 
+            margin: 5px 0; 
+            background: white; 
+            border-radius: 5px; 
             border-left: 4px solid #e9ecef;
+            transition: all 0.3s ease;
         }
         
-        .device-result.success { border-left-color: #4CAF50; }
-        .device-result.failed { border-left-color: #f44336; }
-        .device-result.partial { border-left-color: #ff9800; }
+        .device-result:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
         
-        .hidden { display: none; }
+        .device-result.success { 
+            border-left-color: #4CAF50; 
+        }
+        
+        .device-result.failed { 
+            border-left-color: #f44336; 
+        }
+        
+        .device-result.partial { 
+            border-left-color: #ff9800; 
+        }
+        
+        .hidden { 
+            display: none; 
+        }
+        
+        .quick-date-buttons {
+            display: flex; 
+            gap: 5px; 
+            margin-top: 8px; 
+            flex-wrap: wrap;
+        }
+        
+        .quick-date-btn {
+            background: #e3f2fd; 
+            color: #1976d2; 
+            border: 1px solid #bbdefb;
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            font-size: 12px;
+            cursor: pointer; 
+            transition: background-color 0.2s;
+        }
+        
+        .quick-date-btn:hover {
+            background: #bbdefb;
+        }
+        
+        /* Real-time performance indicator */
+        .speed-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.8em;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .speed-indicator.active {
+            display: block;
+        }
         
         @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
+            .main-content { 
+                grid-template-columns: 1fr; 
+            }
+            
+            .speed-indicator {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 10px 0;
             }
         }
     </style>
@@ -220,7 +361,16 @@
     <div class="container">
         <div class="header">
             <h1>🚀 APK Installer</h1>
-            <p>Deploy APKs to multiple Android devices simultaneously</p>
+            <p>High-Performance deployment to multiple Android devices</p>
+            <div class="performance-indicator">
+                ⚡ Optimized for speed • Parallel processing • Smart caching
+            </div>
+        </div>
+        
+        <!-- Real-time performance indicator -->
+        <div class="speed-indicator" id="speedIndicator">
+            <div>⚡ Processing: <span id="processingSpeed">0</span> devices/sec</div>
+            <div>📊 ETA: <span id="eta">--</span></div>
         </div>
         
         <div class="main-content">
@@ -245,16 +395,22 @@
                     <div class="form-group">
                         <label for="maxParallel">Max Parallel Installations:</label>
                         <select id="maxParallel">
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5" selected>5</option>
-                            <option value="6">6</option>
-                            <option value="8">8</option>
-                            <option value="10">10</option>
+                            <option value="3">3 (Conservative)</option>
+                            <option value="5">5 (Balanced)</option>
+                            <option value="8" selected>8 (Fast)</option>
+                            <option value="10">10 (Faster)</option>
+                            <option value="15">15 (Maximum)</option>
+                            <option value="20">20 (Extreme)</option>
                         </select>
                     </div>
                 </form>
+                
+                <!-- Bulk Operations -->
+                <div class="form-group">
+                    <button type="button" class="btn btn-success" onclick="testAllConnections()">
+                        🔗 Test All Connections
+                    </button>
+                </div>
             </div>
             
             <div class="form-section">
@@ -276,8 +432,37 @@
                     </div>
                 </div>
                 
+                <!-- Enhanced action buttons -->
+                <button type="button" class="btn btn-secondary" onclick="checkDeviceRootStatus()">
+                    🔍 Check Root Status
+                </button>
+                
+                <!-- Date Setting Section -->
+                <div class="date-section">
+                    <label>📅 Set Device Date (Root Required)</label>
+                    <p style="font-size: 0.9em; color: #666; margin: 5px 0;">
+                        ⚡ Parallel processing for faster date setting<br>
+                        <small style="color: #28a745;">✅ Enter date in YYYY-MM-DD format</small>
+                    </p>
+                    <div class="date-input-group">
+                        <input type="text" id="setDateInput" placeholder="2025-07-31" 
+                               pattern="\d{4}-\d{2}-\d{2}" title="Enter date as YYYY-MM-DD"
+                               maxlength="10">
+                        <button type="button" class="btn btn-info" onclick="setDeviceDateOnly()">
+                            📆 Set Date
+                        </button>
+                    </div>
+                    <div class="quick-date-buttons">
+                        <span class="quick-date-btn" onclick="setQuickDate('today')">Today</span>
+                        <span class="quick-date-btn" onclick="setQuickDate('tomorrow')">Tomorrow</span>
+                        <span class="quick-date-btn" onclick="setQuickDate('yesterday')">Yesterday</span>
+                        <span class="quick-date-btn" onclick="setQuickDate('2025-01-01')">2025-01-01</span>
+                        <span class="quick-date-btn" onclick="setQuickDate('2025-12-31')">2025-12-31</span>
+                    </div>
+                </div>
+                
                 <button type="button" class="btn" id="startBtn" onclick="startInstallation()">
-                    🚀 Start Installation
+                    🚀 Start High-Speed Installation
                 </button>
             </div>
             
@@ -302,6 +487,22 @@
                     </div>
                 </div>
                 
+                <!-- Performance metrics -->
+                <div class="performance-metrics">
+                    <div class="metric-card">
+                        <div class="value" id="speedMetric">0</div>
+                        <div>devices/min</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="value" id="etaMetric">--</div>
+                        <div>ETA</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="value" id="parallelMetric">0</div>
+                        <div>parallel</div>
+                    </div>
+                </div>
+                
                 <button type="button" class="btn" id="downloadBtn" onclick="downloadLog()" style="display: none;">
                     📄 Download Log
                 </button>
@@ -316,6 +517,9 @@
 
     <script>
         let progressInterval;
+        let startTime;
+        let lastCompleted = 0;
+        let performanceData = [];
         
         function startInstallation() {
             const formData = {
@@ -328,25 +532,30 @@
                 auto_launch: document.getElementById('autoLaunch').checked
             };
             
-            // Disable form
+            // Initialize performance tracking
+            startTime = Date.now();
+            lastCompleted = 0;
+            performanceData = [];
+            
+            // Show speed indicator
+            document.getElementById('speedIndicator').classList.add('active');
+            
+            // Disable form and update button
             document.getElementById('startBtn').disabled = true;
-            document.getElementById('startBtn').textContent = '⏳ Starting...';
+            document.getElementById('startBtn').textContent = '⚡ Launching High-Speed Installation...';
             
             // Show progress section
             document.getElementById('progressSection').classList.remove('hidden');
             
             fetch('/start_installation', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             })
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Start monitoring progress
-                    progressInterval = setInterval(updateProgress, 1000);
+                    progressInterval = setInterval(updateProgress, 500); // Faster updates
                 } else {
                     alert('Error: ' + data.error);
                     resetForm();
@@ -363,27 +572,27 @@
             fetch('/progress')
             .then(response => response.json())
             .then(data => {
-                // Update progress bar
                 const progress = data.total_devices > 0 ? (data.completed / data.total_devices) * 100 : 0;
                 document.getElementById('progressBar').style.width = progress + '%';
                 document.getElementById('progressBar').textContent = Math.round(progress) + '%';
                 
-                // Update counters
                 document.getElementById('totalDevices').textContent = data.total_devices;
                 document.getElementById('successCount').textContent = data.success;
                 document.getElementById('failedCount').textContent = data.failed;
                 
-                // Update results
+                // Update performance metrics
+                updatePerformanceMetrics(data);
+                
                 if (data.results.length > 0) {
                     document.getElementById('resultsSection').classList.remove('hidden');
                     updateResults(data.results);
                 }
                 
-                // Check if completed
                 if (data.status === 'completed') {
                     clearInterval(progressInterval);
-                    document.getElementById('startBtn').textContent = '✅ Installation Complete';
+                    document.getElementById('startBtn').textContent = '✅ High-Speed Installation Complete!';
                     document.getElementById('downloadBtn').style.display = 'block';
+                    document.getElementById('speedIndicator').classList.remove('active');
                     setTimeout(resetForm, 3000);
                 }
             })
@@ -392,13 +601,38 @@
             });
         }
         
+        function updatePerformanceMetrics(data) {
+            const currentTime = Date.now();
+            const elapsedMinutes = (currentTime - startTime) / (1000 * 60);
+            const completed = data.completed;
+            const remaining = data.total_devices - completed;
+            
+            // Calculate speed (devices per minute)
+            const speed = elapsedMinutes > 0 ? (completed / elapsedMinutes) : 0;
+            document.getElementById('speedMetric').textContent = Math.round(speed);
+            
+            // Calculate ETA
+            const eta = speed > 0 ? (remaining / speed) : 0;
+            const etaText = eta > 0 ? `${Math.round(eta)}m` : '--';
+            document.getElementById('etaMetric').textContent = etaText;
+            
+            // Show parallel processing info
+            document.getElementById('parallelMetric').textContent = document.getElementById('maxParallel').value;
+            
+            // Update speed indicator
+            const devicesPerSec = speed / 60;
+            document.getElementById('processingSpeed').textContent = devicesPerSec.toFixed(1);
+            document.getElementById('eta').textContent = etaText;
+        }
+        
         function updateResults(results) {
             const container = document.getElementById('deviceResults');
             container.innerHTML = '';
             
-            results.forEach(result => {
+            results.forEach((result, index) => {
                 const div = document.createElement('div');
                 div.className = `device-result ${result[2].toLowerCase()}`;
+                div.style.animationDelay = `${index * 0.1}s`;
                 div.innerHTML = `
                     <div>
                         <strong>${result[1]}</strong> - ${result[2]}
@@ -412,14 +646,188 @@
             });
         }
         
+        function testAllConnections() {
+            const devices = document.getElementById('devices').value.trim();
+            const adb_path = document.getElementById('adbPath').value.trim();
+            
+            if (!devices) {
+                alert('Please enter device IP addresses first.');
+                return;
+            }
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = '⚡ Testing Connections...';
+            
+            // This would call a new fast connection test endpoint
+            fetch('/test_connections', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    devices: devices,
+                    adb_path: adb_path
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(`Connection Test Results:\n${data.message}`);
+            })
+            .catch(error => {
+                alert('Error testing connections: ' + error);
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            });
+        }
+        
         function downloadLog() {
             window.location.href = '/download_log';
         }
         
         function resetForm() {
             document.getElementById('startBtn').disabled = false;
-            document.getElementById('startBtn').textContent = '🚀 Start Installation';
+            document.getElementById('startBtn').textContent = '🚀 Start High-Speed Installation';
+            document.getElementById('speedIndicator').classList.remove('active');
         }
+        
+        // Enhanced root status check with performance feedback
+        function checkDeviceRootStatus() {
+            const devices = document.getElementById('devices').value.trim();
+            const adb_path = document.getElementById('adbPath').value.trim();
+            
+            if (!devices) {
+                alert('Please enter device IP addresses first.');
+                return;
+            }
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = '⚡ Checking Root Status (Parallel)...';
+            
+            const checkStart = Date.now();
+            
+            fetch('/check_root_status', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    devices: devices,
+                    adb_path: adb_path
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const checkTime = ((Date.now() - checkStart) / 1000).toFixed(1);
+                alert(`${data.message}\n\n⚡ Completed in ${checkTime}s (parallel processing)`);
+            })
+            .catch(error => {
+                alert('Error checking root status: ' + error);
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            });
+        }
+        
+        // Enhanced date setting with performance feedback
+        function setDeviceDateOnly() {
+            const devices = document.getElementById('devices').value.trim();
+            const adb_path = document.getElementById('adbPath').value.trim();
+            const dateVal = document.getElementById('setDateInput').value.trim();
+            
+            if (!devices) {
+                alert('Please enter device IP addresses.');
+                return;
+            }
+            
+            if (!dateVal) {
+                alert('Please enter a date (YYYY-MM-DD format).');
+                return;
+            }
+            
+            // Validate format
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(dateVal)) {
+                alert('Please enter date in YYYY-MM-DD format (e.g., 2025-07-31)');
+                return;
+            }
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = '⚡ Setting Date (Parallel)...';
+            
+            const setStart = Date.now();
+            
+            fetch('/set_date', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    devices: devices,
+                    adb_path: adb_path,
+                    date: dateVal
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const setTime = ((Date.now() - setStart) / 1000).toFixed(1);
+                alert(`${data.message}\n\n⚡ Completed in ${setTime}s (parallel processing)`);
+            })
+            .catch(error => {
+                alert('Error setting date: ' + error);
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = originalText;
+            });
+        }
+        
+        function setQuickDate(dateType) {
+            const today = new Date();
+            let targetDate;
+            
+            switch(dateType) {
+                case 'today':
+                    targetDate = today;
+                    break;
+                case 'tomorrow':
+                    targetDate = new Date(today);
+                    targetDate.setDate(today.getDate() + 1);
+                    break;
+                case 'yesterday':
+                    targetDate = new Date(today);
+                    targetDate.setDate(today.getDate() - 1);
+                    break;
+                default:
+                    document.getElementById('setDateInput').value = dateType;
+                    return;
+            }
+            
+            const dateString = targetDate.getFullYear() + '-' + 
+                              String(targetDate.getMonth() + 1).padStart(2, '0') + '-' + 
+                              String(targetDate.getDate()).padStart(2, '0');
+            
+            document.getElementById('setDateInput').value = dateString;
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            setQuickDate('today');
+            
+            // Add input formatting for date field
+            const dateInput = document.getElementById('setDateInput');
+            dateInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/[^\d]/g, '');
+                if (value.length >= 4) {
+                    value = value.substring(0, 4) + '-' + value.substring(4);
+                }
+                if (value.length >= 7) {
+                    value = value.substring(0, 7) + '-' + value.substring(7, 9);
+                }
+                e.target.value = value;
+            });
+        });
     </script>
 </body>
 </html>
